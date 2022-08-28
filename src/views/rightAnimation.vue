@@ -38,6 +38,12 @@ export default {
 }
 </script>
 <style scoped>
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
 .home-index {
   float: right;
   width: 20%;
