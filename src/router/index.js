@@ -36,6 +36,11 @@ const routes = [
     component: () => import('../views/openData3.vue')
   },
   {
+    path: '/leftRight2',
+    name: 'leftRight2',
+    component: () => import('../views/leftRight2.vue')
+  },
+  {
     path: '/leftRight',
     name: 'leftRight',
     component: () => import('../views/leftRight.vue')

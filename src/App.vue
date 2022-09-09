@@ -7,6 +7,7 @@
       <router-link to="/openData2">openData2</router-link> |
       <router-link to="/openData3">openData3</router-link> |
       <router-link to="/leftRight">leftRight</router-link> |
+      <router-link to="/leftRight2">leftRight2</router-link> |
     </div>
     <router-view/>
   </div>
