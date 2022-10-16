@@ -44,6 +44,11 @@ const routes = [
     path: '/leftRight',
     name: 'leftRight',
     component: () => import('../views/leftRight.vue')
+  },
+  {
+    path: '/hoverData',
+    name: 'hoverData',
+    component: () => import('../views/hoverData.vue')
   }
 ]
 

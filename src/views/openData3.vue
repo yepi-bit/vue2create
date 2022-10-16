@@ -1,44 +1,107 @@
 <template>
   <div class="home">
-    <div :class="[isOpen?'x':'y']">
-      this is sider
-      <p class="c-layout-sider-open-icon" @click="setWidth"></p>
-    </div>
-    <div :class="[isOpen?'x':'y']">
-      <div style="height:2000px">this is page content</div>
-    </div>
+    <el-table
+        :data="tableData"
+        border
+        style="width: 100%">
+      <el-table-column
+          fixed
+          prop="date"
+          label="日期"
+          width="150">
+      </el-table-column>
+      <el-table-column
+          prop="name"
+          label="姓名"
+          width="120">
+      </el-table-column>
+      <el-table-column
+          prop="province"
+          label="省份"
+          width="120">
+      </el-table-column>
+      <el-table-column
+          prop="city"
+          label="市区"
+          width="120">
+      </el-table-column>
+      <el-table-column
+          prop="address"
+          label="地址"
+          width="300">
+      </el-table-column>
+      <el-table-column
+          prop="zip"
+          label="邮编"
+          width="120">
+      </el-table-column>
+      <el-table-column
+          label="操作">
+        <template slot-scope="scope">
+<!--          <el-popover-->
+<!--              placement="right"-->
+<!--              title="相关文件"-->
+<!--              width="200"-->
+<!--              v-model="tableData[scope.$index].isShow"-->
+<!--              trigger="hover"-->
+<!--              :content=scope.row.zip>-->
+<!--            <el-button slot="reference">{{ scope.row.zip}}</el-button>-->
+<!--          </el-popover>-->
+          <el-popover
+              placement="top-start"
+              title="相关文件"
+              width="200"
+              trigger="hover"
+              :content=scope.row.zip>
+            <el-button slot="reference">{{ scope.row.zip}}</el-button>
+          </el-popover>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: "openData3",
   data() {
     return {
-      isOpen: true,
+      tableData: [{
+        date: '2016-05-03',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333,
+        isShow: false
+      }, {
+        date: '2016-05-02',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: [
+            'httpLxxxxxxxxxxxxx',
+            'httpLxxxxxxxxxxxx2x'
+        ]
+      }]
     }
   },
-  mounted() {
-    console.log(window.innerWidth)
-    this.resize()
-    window.addEventListener('resize', this.resize, true)
-  },
   methods: {
-    setWidth() {
-      this.isOpen = !this.isOpen
-    },
-    resize() {
-      let w_width = window.innerWidth
-      if(w_width<= 1430) {
-        this.isOpen = false
-      }else {
-        this.isOpen = true
-      }
-    },
-  },
-}
+
+  }
+};
 </script>
-
-<style scoped>
-
-</style>
