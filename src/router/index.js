@@ -54,6 +54,11 @@ const routes = [
     path: '/selectData',
     name: 'selectData',
     component: () => import('../views/selectData.vue')
+  },
+  {
+    path: '/buyCount',
+    name: 'buyCount',
+    component: () => import('../views/buyCount.vue')
   }
 ]
 
