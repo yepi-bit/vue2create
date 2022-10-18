@@ -9,6 +9,7 @@
       <router-link to="/leftRight">leftRight</router-link> |
       <router-link to="/leftRight2">leftRight2</router-link> |
       <router-link to="/hoverData">hoverData</router-link> |
+      <router-link to="/selectData">selectData</router-link> |
     </div>
     <router-view/>
   </div>
