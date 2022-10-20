@@ -11,6 +11,7 @@
       <router-link to="/hoverData">hoverData</router-link> |
       <router-link to="/selectData">selectData</router-link> |
       <router-link to="/buyCount">buyCount</router-link> |
+      <router-link to="/optionValue">optionValue</router-link> |
     </div>
     <router-view/>
   </div>

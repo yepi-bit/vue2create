@@ -59,6 +59,11 @@ const routes = [
     path: '/buyCount',
     name: 'buyCount',
     component: () => import('../views/buyCount.vue')
+  },
+  {
+    path: '/optionValue',
+    name: 'optionValue',
+    component: () => import('../views/optionValue.vue')
   }
 ]
 
