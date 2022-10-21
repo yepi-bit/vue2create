@@ -1,16 +1,17 @@
 <template>
   <div>
-    <el-select v-model="value" placeholder="请选择" @change="changeValue">
+    <el-select v-model="value" placeholder="请选择" clearable @change="changeValue">
       <el-option
           v-for="item in options"
           :key="item.value"
           :label="item.label"
-          :value="item">
+          :value="item.value">
       </el-option>
     </el-select>
     {{ value }}
-    {{ values.value }}
-    {{ values.label }}
+    <div>
+      <el-checkbox v-model="checked" @change="valueC">只看自己</el-checkbox>
+    </div>
   </div>
 </template>
 
@@ -20,7 +21,11 @@ export default {
   data() {
     return {
       value: '',
-      values: [],
+      checked: false,
+      userName: {
+        value: "1101",
+        label: "管理员"
+      },
       options: [{
         value: '选项1',
         label: '黄金糕'
@@ -31,19 +36,33 @@ export default {
         value: '选项3',
         label: '蚵仔煎'
       }, {
-        value: '选项4',
-        label: '龙须面'
-      }, {
-        value: '选项5',
-        label: '北京烤鸭'
-      }],
+        value: "1101",
+        label: "管理员"
+      },],
     }
   },
   methods: {
     changeValue(val) {
-      console.log(val)
-      this.values = val
-      console.log(this.values.label)
+      // this.checked = false
+      this.options.forEach(o => {
+        if (o.value == val.value) {
+          this.value = val.value
+        }
+      })
+      if(this.checked = true) {
+        if(val.value != this.userName.value) {
+          this.checked = false
+        }else {
+          this.checked = true
+        }
+      }
+    },
+    valueC(val) {
+      if (val == true) {
+        this.changeValue(this.userName)
+      } else {
+        this.value = ''
+      }
     }
   }
 }
