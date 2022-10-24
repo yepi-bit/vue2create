@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   name: "optionValue",
   data() {
@@ -43,6 +45,8 @@ export default {
   },
   methods: {
     changeValue(val) {
+      this.actionValue(val)                       // 方法1 存数据
+      this.$store.dispatch("product", val); // 方法2 存数据
       // this.checked = false
       this.options.forEach(o => {
         if (o.value == val.value) {
@@ -57,7 +61,13 @@ export default {
         }
       }
     },
+    ...mapActions({
+      'actionValue':'actionValue'
+    }),
     valueC(val) {
+      console.log(this.$store.state.user)         // 方法1 拿数据
+      console.log(this.$store.getters.towUser)
+      console.log(this.$store.getters.getNumber)
       if (val == true) {
         this.changeValue(this.userName)
       } else {
