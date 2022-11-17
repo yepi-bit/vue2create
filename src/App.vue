@@ -12,6 +12,7 @@
       <router-link to="/selectData">selectData</router-link> |
       <router-link to="/buyCount">buyCount</router-link> |
       <router-link to="/optionValue">optionValue</router-link> |
+      <router-link to="/uploadImg">uploadImg</router-link> |
     </div>
     <router-view/>
   </div>
