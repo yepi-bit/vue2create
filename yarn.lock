@@ -1769,6 +1769,11 @@ arch@^2.1.1:
   resolved "https://registry.npmmirror.com/arch/-/arch-2.2.0.tgz#1bc47818f305764f23ab3306b0bfc086c5a29d11"
   integrity sha512-Of/R0wqp83cgHozfIYLbBMnej79U/SVGOOyuB3VVFv1NRM/PSFMK12x9KVtiYzJqmnU5WR2qp0Z5rHb7sWGnFQ==
 
+area-data@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.npmmirror.com/area-data/-/area-data-5.0.6.tgz#c381c3f88ff9e1050accd07549d206fce2a28d13"
+  integrity sha512-QxLoA+823xXKyhw5S3750I9TToki0OS42HU9ol3rCOsCXfkjtl8RtQ/eoj0cK0Levn4//oEM05FmMumfw/HIlg==
+
 argparse@^1.0.7:
   version "1.0.10"
   resolved "https://registry.npmmirror.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
@@ -5112,6 +5117,11 @@ lodash.defaultsdeep@^4.6.1:
   resolved "https://registry.npmmirror.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.1.tgz#512e9bd721d272d94e3d3a63653fa17516741ca6"
   integrity sha512-3j8wdDzYuWO3lM3Reg03MuQR957t287Rpcxp1njpEa8oDrikb+FwGdW3n+FELh/A6qib6yPit0j/pv9G/yeAqA==
 
+lodash.find@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.npmmirror.com/lodash.find/-/lodash.find-4.6.0.tgz#cb0704d47ab71789ffa0de8b97dd926fb88b13b1"
+  integrity sha512-yaRZoAV3Xq28F1iafWN1+a0rflOej93l1DQUejs3SZ41h2O9UJBoS9aueGjPDgAl4B6tPC0NuuchLKaDQQ3Isg==
+
 lodash.kebabcase@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npmmirror.com/lodash.kebabcase/-/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
@@ -7913,6 +7923,13 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.npmmirror.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+vue-area-linkage@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.npmmirror.com/vue-area-linkage/-/vue-area-linkage-5.1.0.tgz#369962b109907b058aedcf9f7deacb9e65afea03"
+  integrity sha512-86WD4O6PD9e2koWZ81Zlfcyey17U1+3B3fpWoyIZlBIe2V6qfvrg9BTozWdTpdF4CmKBiz138LBRTKhawl/UWw==
+  dependencies:
+    lodash.find "^4.6.0"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"

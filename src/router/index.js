@@ -69,6 +69,11 @@ const routes = [
     path: '/uploadImg',
     name: 'uploadImg',
     component: () => import('../views/uploadImg.vue')
+  },
+  {
+    path: '/cityName',
+    name: 'cityName',
+    component: () => import('../views/cityName.vue')
   }
 ]
 

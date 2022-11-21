@@ -13,6 +13,7 @@
       <router-link to="/buyCount">buyCount</router-link> |
       <router-link to="/optionValue">optionValue</router-link> |
       <router-link to="/uploadImg">uploadImg</router-link> |
+      <router-link to="/cityName">cityName</router-link> |
     </div>
     <router-view/>
   </div>
