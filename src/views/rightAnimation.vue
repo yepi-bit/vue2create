@@ -1,8 +1,14 @@
 <template>
   <div class="home-index">
-    <div class="right-border">
-      <div class="icon-btn"><i :class="['el-icon-caret-right',{'on':!toggle}]" @click="animFn" /></div>
+    <div class="right-border" ref="dataRef">
+      <div class="icon-btn"><i :class="['el-icon-caret-right',{'on':!toggle}]" @click="animFn"/></div>
     </div>
+    <div>
+      {{ offsetWidth }}
+    </div>
+    <el-button type="warning" @click="fullWidthClick">屏幕宽度</el-button>
+    {{ fullWidth }}
+    {{ cpmWidth }}
   </div>
 </template>
 
@@ -12,11 +18,31 @@ import $ from 'jquery'
 export default {
   data() {
     return {
-      toggle: true
+      toggle: true,
+      fullWidth: 0,
+      isCollapse: false,
+      offsetWidth: ''
     }
   },
+  computed: {
+    cpmWidth() {
+      let leftWidth = this.isCollapse ? '64' : '200';
+      return (this.fullWidth - leftWidth) + 'px'
+    },
+  },
+  created() {
+    window.addEventListener('resize', this.fullWidthClick)
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.fullWidthClick)
+  },
   methods: {
+    fullWidthClick() {
+      this.offsetWidth = this.$refs.dataRef.offsetWidth // 宽
+      this.fullWidth = document.documentElement.clientWidth // document.documentElement.offsetWidth
+    },
     animFn() { // 两边展开收起动画
+      this.isCollapse = !this.isCollapse
       const _this = this
       if (this.toggle) {
         $('.home-index .right').animate({
@@ -41,14 +67,16 @@ export default {
 ::-webkit-scrollbar {
   background-color: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
+
 .home-index {
   float: right;
   width: 20%;
   height: 100vh;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   position: relative;
   overflow: hidden;
 }

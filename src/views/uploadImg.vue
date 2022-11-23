@@ -23,30 +23,33 @@
         <el-upload
             class="avatar-uploader"
             action="#"
-            :limit="3"
+            :limit="zImgList.length > 4 ? 5:''"
             :show-file-list="false"
             :auto-upload="false"
             :on-change="uploadImg"
             :on-remove="handleRemove">
           <img
-              v-if="zImg"
-              :src="zImg"
+              v-if="zImgList[zImgList.length -1]"
+              :src="zImgList[zImgList.length -1]"
               class="avatar"
           />
           <i v-else class="el-icon-plus avatar-uploader-icon"/>
         </el-upload>
-        <el-button type="primary" plain @click="zPrintImg">打印</el-button>
       </el-col>
       <el-col :span="12">
         <div>
           <p>自定义图片数组</p>
           <div v-for="(item,index) in zImgList" :key="index"
-               style="position: relative;display: inline-block;border: 1px solid darkblue;margin-left: 6px">
-            <img
-                width="196px"
-                height="234px"
-                :src="item"
-            />
+               style="display: inline-block;border: 1px solid darkblue;margin-left: 6px;position: relative">
+            <div class="imgList">
+              <img
+                  class="imgHover"
+                  width="196px"
+                  height="234px"
+                  :src="item"
+              />
+              <div class="icon" @click="clickLook(index)"><i class="el-icon-zoom-in"/></div>
+            </div>
             <span class="closeBtn" @click="closeBtn(index)"><i class="el-icon-close"/></span>
           </div>
         </div>
@@ -103,6 +106,12 @@ export default {
         this.zImg = res
         this.zImgList.push(res)
       });
+      if (this.zImgList.length > 3) {
+        this.$message({
+          type: "success",
+          message: '最多上传5涨图片'
+        })
+      }
     },
     getBase64(file) {
       return new Promise(function (resolve, reject) {
@@ -123,8 +132,9 @@ export default {
     closeBtn(i) {
       this.zImgList.splice(i, 1)
     },
-    zPrintImg() {
-      console.log(this.zImgList)
+    clickLook(i) {
+      this.dialogImageUrl = this.zImgList[i];
+      this.dialogVisible = true;
     }
   }
 }
@@ -165,6 +175,38 @@ export default {
   height: 236px;
   line-height: 194px;
   text-align: center;
+}
+
+.imgList {
+  width: 194px;
+  height: 236px;
+  position: relative;
+}
+
+.imgList .imgHover {
+  width: 194px;
+  height: 236px;
+}
+
+.imgList .icon {
+  width: 100%;
+  height: 100%;
+  position: absolute; /* 设置绝对定位 */
+  top: 0; /* 设置绝对定位之后还要设置top不然元素还是在图片下面 */
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  /*box-sizing: border-box;*/
+  /*padding: 45px 0;*/
+  cursor: pointer;
+  line-height: 236px;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.imgList:hover .icon {
+  opacity: 1;
 }
 
 .closeBtn {
