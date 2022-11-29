@@ -74,6 +74,21 @@ const routes = [
     path: '/cityName',
     name: 'cityName',
     component: () => import('../views/cityName.vue')
+  },
+  {
+    path: '/vertical',
+    name: 'vertical',
+    component: () => import('../views/vertical.vue')
+  },
+  {
+    path: '/vertical2',
+    name: 'vertical2',
+    component: () => import('../views/vertical2.vue')
+  },
+  {
+    path: '/vertical3',
+    name: 'vertical3',
+    component: () => import('../views/vertical3.vue')
   }
 ]
 

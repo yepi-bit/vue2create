@@ -14,6 +14,9 @@
       <router-link to="/optionValue">optionValue</router-link> |
       <router-link to="/uploadImg">uploadImg</router-link> |
       <router-link to="/cityName">cityName</router-link> |
+      <router-link to="/vertical">vertical</router-link> |
+      <router-link to="/vertical2">vertical2</router-link> |
+      <router-link to="/vertical3">vertical3</router-link> |
     </div>
     <router-view/>
   </div>
