@@ -54,7 +54,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 span {
   position: relative;
   display: inline-block;

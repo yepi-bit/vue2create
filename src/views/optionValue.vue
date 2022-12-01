@@ -1,16 +1,29 @@
 <template>
   <div>
-    <el-select v-model="value" placeholder="请选择" clearable @change="changeValue">
-      <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-      </el-option>
-    </el-select>
-    {{ value }}
     <div>
-      <el-checkbox v-model="checked" @change="valueC">只看自己</el-checkbox>
+      <el-select v-model="value" placeholder="请选择" clearable @change="changeValue">
+        <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+        </el-option>
+      </el-select>
+      {{ value }}
+      <div>
+        <el-checkbox v-model="checked" @change="valueC">只看自己</el-checkbox>
+      </div>
+    </div>
+    <div style="margin-top: 200px">
+      <el-select v-model="value2" multiple placeholder="请选择">
+        <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+        </el-option>
+      </el-select>
+      <el-button>{{ value2 }}</el-button>
     </div>
   </div>
 </template>
@@ -23,6 +36,7 @@ export default {
   data() {
     return {
       value: '',
+      value2: [],
       checked: false,
       userName: {
         value: "1101",
@@ -43,6 +57,11 @@ export default {
       },],
     }
   },
+  mounted() {
+    this.options.forEach(o => {
+      this.value2.push(o.value)
+    })
+  },
   methods: {
     changeValue(val) {
       this.actionValue(val)                       // 方法1 存数据
@@ -53,16 +72,16 @@ export default {
           this.value = val.value
         }
       })
-      if(this.checked = true) {
-        if(val.value != this.userName.value) {
+      if (this.checked = true) {
+        if (val.value != this.userName.value) {
           this.checked = false
-        }else {
+        } else {
           this.checked = true
         }
       }
     },
     ...mapActions({
-      'actionValue':'actionValue'
+      'actionValue': 'actionValue'
     }),
     valueC(val) {
       console.log(this.$store.state.user)         // 方法1 拿数据
