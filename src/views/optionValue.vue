@@ -25,6 +25,22 @@
       </el-select>
       <el-button>{{ value2 }}</el-button>
     </div>
+    <div style="margin-top: 150px">
+      <div v-for="(item,index) in dataLength" :key="index">
+        <el-input style="width: 20vw" v-model="input[index]" placeholder="请选择"/>
+        <el-button @click="add"><i class="el-icon-plus"/></el-button>
+        <el-button v-if="index > 0" @click="deleteAdd(index)"><i class="el-icon-minus"/></el-button>
+      </div>
+      dataLength:{{ dataLength }}
+      <div>
+        <el-button @click="print">打印</el-button>
+        inputList:{{ inputList }}
+        <p>
+          input:<el-button>{{ input }}</el-button>
+        </p>
+        <p>addressList:{{ addressList }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,6 +51,10 @@ export default {
   name: "optionValue",
   data() {
     return {
+      dataLength: [0],
+      input: [],
+      inputList: [],
+      addressList: [],
       value: '',
       value2: [],
       checked: false,
@@ -63,6 +83,29 @@ export default {
     })
   },
   methods: {
+    add() {
+      this.dataLength.push(this.dataLength.length)
+    },
+    deleteAdd(i) {
+      this.dataLength.splice(i, 1);
+      this.input.splice(i, 1);
+    },
+    print() {
+      this.inputList = []
+      this.dataLength.forEach((e) => {
+        this.inputList.push(this.input[e]);
+      });
+
+      this.addressList = []
+      this.dataLength.forEach((e, index) => {
+        if (this.input[index]) {
+          this.addressList.push({
+            provinceName: this.input[index],
+            address: e,
+          });
+        }
+      });
+    },
     changeValue(val) {
       this.actionValue(val)                       // 方法1 存数据
       this.$store.dispatch("product", val); // 方法2 存数据

@@ -10,6 +10,8 @@
       <el-table-column prop="name" align="center" width="300px"></el-table-column>
       <el-table-column prop="amount1" align="center"></el-table-column>
     </el-table>
+    <h2>我是字</h2>
+    <div class="text">我是字</div>
   </div>
 </template>
 <script>
@@ -60,5 +62,18 @@ export default {
   }
 };
 </script>
+<style scoped>
+@font-face {
+  font-family: AliHeavy;
+  src: url('../assets/font/AlibabaPuHuiTi-2-105-Heavy.ttf')
+}
+
+h2 {
+  font-family: AliHeavy;
+}
+.text {
+  font-family: AliHeavy;
+}
+</style>
 
 
