@@ -3,6 +3,7 @@
     <el-table
         :data="tableData"
         border
+        :span-method="spanMethod"
         style="width: 100%">
       <el-table-column
           fixed
@@ -101,7 +102,25 @@ export default {
     }
   },
   methods: {
-
+    spanMethod(row, column, rowIndex, columnIndex) {
+      if (columnIndex === 0) {
+        if( this.tableData.length ){
+          for( let i in this.tableData ){
+            let item = this.tableData[i];
+            if( rowIndex == item.index ){
+              return {
+                rowspan: item.count,
+                colspan: 1
+              };
+            }
+          }
+          return {
+            rowspan: 0,
+            colspan: 0
+          }
+        }
+      }
+    }
   }
 };
 </script>
