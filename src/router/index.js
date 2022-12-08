@@ -89,6 +89,11 @@ const routes = [
     path: '/vertical3',
     name: 'vertical3',
     component: () => import('../views/vertical3.vue')
+  },
+  {
+    path: '/website',
+    name: 'website',
+    component: () => import('../views/website.vue')
   }
 ]
 

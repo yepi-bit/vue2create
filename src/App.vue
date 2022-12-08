@@ -17,6 +17,7 @@
       <router-link to="/vertical">vertical</router-link> |
       <router-link to="/vertical2">vertical2</router-link> |
       <router-link to="/vertical3">vertical3</router-link> |
+      <router-link to="/website">website</router-link> |
     </div>
     <router-view/>
   </div>
