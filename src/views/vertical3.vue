@@ -11,13 +11,23 @@
       <el-table-column prop="amount1" align="center"></el-table-column>
     </el-table>
     <h2>我是字</h2>
-    <div class="text">我是字</div>
+    <div class="text" v-if="isShowBtn">我是字</div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      getUser: {
+        button: [
+          '编辑1',
+          '增加1',
+          '上报1',
+          '统计',
+          '删除',
+        ]
+      }
+    };
   },
   computed: {
     //因为数据用到了dataform中的数据，所以写在了computed中
@@ -48,6 +58,30 @@ export default {
           amount1: '',
         }
       ];
+    },
+    isShowBtn() {
+      // if(this.getUser.button) {
+      //   return this.getUser.button.includes(btn)
+      // }
+      let isBtn = null
+      isBtn = this.getUser.button.map(v => {
+        switch (v) {
+          case '编辑':
+            return isBtn = true
+          case '增加':
+            return isBtn = true
+          case '上报':
+            return isBtn = true
+          case '统计':
+            return isBtn = true
+          case '删除':
+            return isBtn = true
+          default :
+            return isBtn = false
+        }
+      })
+      console.log(isBtn)
+      return isBtn[4]
     }
   },
   methods: {
@@ -71,6 +105,7 @@ export default {
 h2 {
   font-family: AliHeavy;
 }
+
 .text {
   font-family: AliHeavy;
 }

@@ -1,67 +1,91 @@
 <template>
-  <div class="header">
-    <div class="header-left">
-      <h3>
-        <span class="re">相 约 自 贸 港 <b class="ab-middle">·</b> <span class="m-l15">共 享 新 机 遇</span></span>
-        <span>{{ date }} {{ time }}</span>
-      </h3>
+  <div>
+    <div class="header">
+      <div class="header-left">
+        <h3>
+          <span class="re">相 约 自 贸 港 <b class="ab-middle">·</b> <span class="m-l15">共 享 新 机 遇</span></span>
+          <span>{{ date }} {{ time }}</span>
+        </h3>
+      </div>
+      <div class="header-center"><h2>Yepi-bit平台</h2></div>
+      <div class="header-right">
+        <ul class="menu">
+          <li
+              :class="[{'on':$route.path === '/'}]"
+              @mouseenter="showQjts = true"
+              @mouseleave="showQjts = false"
+          >
+            全局态势 <i :class="showQjts === false ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"/>
+            <span/>
+            <el-collapse-transition>
+              <div v-show="showQjts" class="select-box">
+                <div class="option" @click="$router.push('/')">全局态势</div>
+                <!-- <div class="option" @click="$router.push('/crowdHome')">人群态势</div> -->
+                <div class="option" @click="$router.push('/optionValue')">选项值</div>
+              </div>
+            </el-collapse-transition>
+          </li>
+          <li :class="[{'on':$route.path === '/openData3'}]"
+              @mouseenter="showYjfx = true"
+              @mouseleave="showYjfx = false">
+            预警研判 <i :class="showYjfx === false ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"/>
+            <span/>
+            <el-collapse-transition>
+              <div v-show="showYjfx" class="select-box">
+                <!--<div class="option" @click="$router.push('/earlyWarnAnalysis')">预警分析</div>-->
+                <div class="option" @click="$router.push('/openData3')">重点人研判</div>
+              </div>
+            </el-collapse-transition>
+          </li>
+          <li
+              :class="[{'on':$route.path === '/vertical'}]"
+              @mouseenter="showZhdd = true"
+              @mouseleave="showZhdd = false"
+          >
+            指挥调度 <i :class="showZhdd === false ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"/>
+            <span/>
+            <el-collapse-transition>
+              <div v-show="showZhdd" class="select-box">
+                <div class="option" @click="$router.push('/vertical')">安保态势</div>
+                <div class="option" @click="$router.push('/vertical2')">安保部署图</div>
+                <div class="option" @click="$router.push('/vertical3')">场馆展区图</div>
+                <div class="option" @click="$router.push('/vertical2')">安保方案管理</div>
+                <div class="option" @click="$router.push('/vertical3')">应急预案管理</div>
+              </div>
+            </el-collapse-transition>
+          </li>
+          <li @click="$router.push({path:'/vertical'})">主题分析<span/></li>
+          <li @click="$router.push({path:'/vertical2'})">数据中心<span/></li>
+        </ul>
+      </div>
     </div>
-    <div class="header-center"><h2>Yepi-bit平台</h2></div>
-    <div class="header-right">
-      <ul class="menu">
-        <li
-            :class="[{'on':$route.path === '/'}]"
-            @mouseenter="showQjts = true"
-            @mouseleave="showQjts = false"
-        >
-          全局态势 <i :class="showQjts === false ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"/>
-          <span/>
-          <el-collapse-transition>
-            <div v-show="showQjts" class="select-box">
-              <div class="option" @click="$router.push('/')">全局态势</div>
-              <!-- <div class="option" @click="$router.push('/crowdHome')">人群态势</div> -->
-              <div class="option" @click="$router.push('/optionValue')">选项值</div>
-            </div>
-          </el-collapse-transition>
-        </li>
-        <li :class="[{'on':$route.path === '/openData3'}]"
-            @mouseenter="showYjfx = true"
-            @mouseleave="showYjfx = false">
-          预警研判 <i :class="showYjfx === false ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"/>
-          <span/>
-          <el-collapse-transition>
-            <div v-show="showYjfx" class="select-box">
-              <!--<div class="option" @click="$router.push('/earlyWarnAnalysis')">预警分析</div>-->
-              <div class="option" @click="$router.push('/openData3')">重点人研判</div>
-            </div>
-          </el-collapse-transition>
-        </li>
-        <li
-            :class="[{'on':$route.path === '/vertical'}]"
-            @mouseenter="showZhdd = true"
-            @mouseleave="showZhdd = false"
-        >
-          指挥调度 <i :class="showZhdd === false ? 'el-icon-caret-bottom' : 'el-icon-caret-top'"/>
-          <span/>
-          <el-collapse-transition>
-            <div v-show="showZhdd" class="select-box">
-              <div class="option" @click="$router.push('/vertical')">安保态势</div>
-              <div class="option" @click="$router.push('/vertical2')">安保部署图</div>
-              <div class="option" @click="$router.push('/vertical3')">场馆展区图</div>
-              <div class="option" @click="$router.push('/vertical2')">安保方案管理</div>
-              <div class="option" @click="$router.push('/vertical3')">应急预案管理</div>
-            </div>
-          </el-collapse-transition>
-        </li>
-        <li @click="$router.push({path:'/vertical'})">主题分析<span/></li>
-        <li @click="$router.push({path:'/vertical2'})">数据中心<span/></li>
-      </ul>
+    <div style="position: absolute;z-index: 9;top: 15vh">
+      <div class="title-up">
+        <h5>活动基本情况</h5>
+        <el-button size="mini" plain round @click="basicsUp">{{ tagName }} <i class="el-icon-arrow-down"></i>
+        </el-button>
+      </div>
+      <div class="main-box" id="basicsUp">
+        <p>我是：Yepi</p>
+      </div>
+    </div>
+    <div style="position: absolute;z-index: 9;top: 30vh">
+      <h3><i class="el-icon-s-help"></i>场馆方案</h3>
+      <div class="change-venue">
+        <span>111111111111</span>
+      </div>
+      <div class="change-box" element-loading-text="附件上传中...">
+        <div class="box-list">
+          2222222222222222222222
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import dayjs from 'dayjs'
+import $ from 'jquery'
 
 export default {
   data() {
@@ -72,10 +96,17 @@ export default {
       showQjts: false,
       showYjfx: false,
       showZhdd: false,
-      "$route.path":'/'
+      "$route.path": '/',
+      tagName: '收起',
     }
   },
   mounted() {
+    $(".change-venue").on("click", "span", function () {
+      _this.index = $(this).index();
+      $(this).addClass("on").siblings().removeClass("on");
+      $(".change-box .box-list").eq(_this.index).show().siblings().hide();
+    })
+
     const _this = this
     this.date = dayjs().format('YYYY-MM-DD')
     this.setIn = setInterval(function () {
@@ -85,11 +116,32 @@ export default {
   beforeDestroy() {
     clearInterval(this.setIn)
   },
-  methods: {}
+  methods: {
+    basicsUp() {
+      const dsp = $('#basicsUp').css('display')
+      if (dsp === 'block') {
+        this.tagName = '展开'
+      } else {
+        this.tagName = '收起'
+      }
+      $('#basicsUp').slideToggle();
+    },
+  }
 }
 </script>
 
 <style scoped>
+.main-box {
+  padding: 10px;
+  line-height: 24px;
+  background: #00c7e6;
+}
+
+.main-box p {
+  font-size: 14px;
+  color: #666;
+}
+
 .header {
   width: 100%;
   height: 7vh;
@@ -167,7 +219,7 @@ export default {
   position: relative;
 }
 
-.header .header-right .menu li:hover{
+.header .header-right .menu li:hover {
   height: 5.2vh;
   border-bottom: 2px solid #fb4c3b;
 }
