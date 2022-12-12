@@ -80,6 +80,21 @@
         </div>
       </div>
     </div>
+    <div style="position: absolute;z-index: 9;top: 50vh">
+      <el-form :inline="true" ref="formSearch" :model="formSearch">
+        <el-form-item label="抓拍时间">
+          <el-date-picker
+              v-model="formSearch.time"
+              type="datetimerange"
+              :picker-options="pickerOptions"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              align="right"
+          ></el-date-picker>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
@@ -98,6 +113,53 @@ export default {
       showZhdd: false,
       "$route.path": '/',
       tagName: '收起',
+      formSearch: {},
+      pickerOptions: {
+        shortcuts: [
+          {
+            text: "今天",
+            onClick(picker) {
+              const end = new Date();
+              picker.$emit("pick", [
+                new Date(dayjs(end).format("YYYY-MM-DD 00:00:00")),
+                end
+              ]);
+            }
+          },
+          {
+            text: "本周",
+            onClick(picker) {
+              const end = new Date();
+              let week = end.getDay(); //星期
+              if (week === 0) {
+                week = 7
+              }
+              const start = new Date(end - week * 86400000);
+              picker.$emit("pick", [
+                new Date(dayjs(start).format("YYYY-MM-DD 00:00:00")),
+                end
+              ]);
+            }
+          },
+          {
+            text: "本月",
+            onClick(picker) {
+              const end = new Date();
+              const start = dayjs(end).format("YYYY-MM-01 00:00:00");
+              picker.$emit("pick", [start, end]);
+            }
+          },
+          {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }
+        ]
+      },
     }
   },
   mounted() {

@@ -94,6 +94,21 @@ const routes = [
     path: '/website',
     name: 'website',
     component: () => import('../views/website.vue')
+  },
+  {
+    path: '/website2',
+    name: 'website2',
+    component: () => import('../views/website2.vue')
+  },
+  {
+    path: '/openData4',
+    name: 'openData4',
+    component: () => import('../views/openData4.vue')
+  },
+  {
+    path: '/openData5',
+    name: 'openData5',
+    component: () => import('../views/openData5.vue')
   }
 ]
 
