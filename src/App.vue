@@ -19,7 +19,7 @@
       <router-link to="/vertical3">vertical3</router-link> |
       <router-link to="/website">website</router-link> |
       <router-link to="/website2">website2</router-link> |
-      <router-link to="/openData4">openData4</router-link> |
+      <router-link to="/open-watch">open-watch</router-link> |
       <router-link to="/openData5">openData5</router-link> |
     </div>
     <router-view/>

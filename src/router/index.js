@@ -101,9 +101,9 @@ const routes = [
     component: () => import('../views/website2.vue')
   },
   {
-    path: '/openData4',
-    name: 'openData4',
-    component: () => import('../views/openData4.vue')
+    path: '/open-watch',
+    name: 'open-watch',
+    component: () => import('../views/open-watch.vue')
   },
   {
     path: '/openData5',
