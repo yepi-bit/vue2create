@@ -95,7 +95,7 @@ export default {
         this.calculateText();
         this.calculateList();
         this.calculateSubList();
-      }, 300);
+      }, 10);
     });
   },
   methods: {

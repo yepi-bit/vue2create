@@ -1,86 +1,122 @@
 <template>
-  <div class="m-slidebar">
-    //按钮区域
-    <span class="m-closeBtn" id='m-closeBtn' @click="dianji"><Icon color="white"
-                                                                   icon="ant-design:right-circle-outlined"></Icon></span>
-    <div>内容区域</div>
+  <div>
+    <div>
+      <h1>节流</h1>
+      <el-input type="primary" style="width: 300px" v-model="value" placeholder="按钮节流"/>
+      <el-button @click="clickValue">查询</el-button>
+    </div>
+    <div>
+      <h1>防抖</h1>
+      <el-input
+          v-model="serves"
+          placeholder="输入框防抖"
+          style="width: 300px"
+      ></el-input>
+    </div>
+    <div class="wave-content ">
+      <div class="wave wave1 "></div>
+      <div class="wave wave2 "></div>
+      <div class="wave wave3 "></div>
+      <div class="wave wave4"></div>
+    </div>
   </div>
-
 </template>
 
 <script>
-import $ from 'jquery'
+import throttle from "../utils/throttle.js"
+import debounce from "../utils/debounce.js"
+
 export default {
   name: "openData2",
-  methods: {
-    dianji() {
-      //获取dom元素
-      var sideBar = document.getElementsByClassName('m-slidebar')[0];
-      //我的逻辑上是先判断没有这个class，没有的话就添加，这个添加动作会触发宽度加长的过渡效果
-      console.log(sideBar.classList);
-      if (!sideBar.classList.contains('addWidth')) {
-        console.log(sideBar.classList.contains('addWidth'));
-        sideBar.classList.add("addWidth")
-
-      } else {
-        sideBar.classList.remove("addWidth");
-      }
+  data() {
+    return {
+      value: '',
+      serves: ''
     }
-      //     $("#m-closeBtn").click(function () {
-      //   var sideBar = $(".m-slidebar");
-      //   //我的逻辑上是先判断没有这个class，没有的话就添加，这个添加动作会触发宽度加长的过渡效果
-      //   if (!sideBar.hasClass("addWidth")) {
-      //     $(".m-slidebar").addClass("addWidth");
-      //   }
-      //   //同理，展开之后要切换，移除这个class来触发减小宽度的过渡效果
-      //   else {
-      //     $(".m-slidebar").removeClass("addWidth");
-      //   }
-      // })
+  },
+  watch: {
+    serves(news) {
+      this.changeValue();
+    },
+  },
+  methods: {
+    isFun() {
+      console.log(12)
+    },
+    changeValue: debounce(function () {
+      console.log("防抖：", this.serves);
+    }, 500),
+    clickValue: throttle(function () {
+      this.isFun()
+      console.log('节流', this.value)
+    }, 800),
   }
 }
 </script>
 
 
 <style scoped>
-.addWidth {
-  height: 100vh !important;
-  right: 0px !important;
-  width: 580px !important;
-  min-width: 580px !important;
-  position: absolute;
-  z-index: 11 !important;
-  top: 0px !important;
-  bottom: 0px !important;
+.wave-content {
+  height: 666px;
+  width: 666px;
+  left: 255px;
+  top: 139px;
+  position: relative;
 }
 
-.m-slidebar {
-  height: 100vh !important;
-  transition: width 1s;
-  right: -580px; /* 侧边栏有多宽，就-多少，相当于先藏在视窗外边（从左边打开的话就换成left）,我这个侧边栏在右边 */
-  width: 580px;
-  min-width: 580px;
+.wave {
   position: absolute;
-  z-index: 11;
-  transition: all 0.2s;
-  height: calc(100vh - 2.5rem);
-  background: white;
-  box-shadow: 0px 5px 5px rgba(11, 2, 5, 0.1);
-  top: 0px;
-  bottom: 0px;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transform-origin: center center;
+  background-color: transparent;
+  border: 2px solid #979797;
+  animation-duration: 7s;
+  animation-name: wv;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  border-radius: 50%;
+  opacity: 0;
 }
 
-.m-slidebar .m-closeBtn {
-  position: absolute;
-  width: 30px;
-  height: 40px;
-  left: -30px;
-  background-image: linear-gradient(135deg, #5e60eb 3%, #4282fa 100%), linear-gradient(#edf2fc, #edf2fc);
-  box-shadow: 0px 5px 5px rgba(11, 2, 5, 0.1);
-  border-radius: 6px 0px 0px 6px;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
+.wave1 {
+  animation-delay: 0s;
+}
+
+.wave2 {
+  animation-delay: 1.5s;
+}
+
+.wave3 {
+  animation-delay: 3s;
+}
+
+.wave4 {
+  animation-delay: 4.5s;
+}
+
+@keyframes wv {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  30% {
+    opacity: 0.7;
+    transform: scale(0.65);
+  }
+
+  70% {
+    opacity: 0.1;
+    transform: scale(0.85);
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
 }
 </style>
 

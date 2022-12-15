@@ -23,10 +23,10 @@
         <el-upload
             class="avatar-uploader"
             action="#"
-            :limit="zImgList.length > 4 ? 5:''"
+            :limit="Number(zImgList.length > 4 ? 1:5)"
             :show-file-list="false"
             :auto-upload="false"
-            :on-change="uploadImg"
+            :on-change="uploadImg"z
             :on-remove="handleRemove">
           <img
               v-if="zImgList[zImgList.length -1]"

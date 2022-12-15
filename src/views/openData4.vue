@@ -8,7 +8,7 @@
           </inputAndTab>
         </div>
       </transition>
-      <el-button type="text" style="margin-left:13px;" @click="foldHandle">{{ fText }}</el-button>
+      <el-button type="primary" style="margin-left:13px;" @click="foldHandle">{{ fText }}</el-button>
     </div>
   </div>
 </template>

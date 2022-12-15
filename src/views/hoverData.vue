@@ -45,7 +45,7 @@
           </el-popover>
         </template>
       </el-table-column>
-      <el-table-column prop="status" :formatter="formatStatus" label="状态"></el-table-column>
+      <el-table-column prop="status" label="状态"></el-table-column>
       <el-table-column prop="handlePeople" label="处理人"></el-table-column>
       <el-table-column prop="handleDate" label="日期"></el-table-column>
     </el-table>
