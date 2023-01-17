@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header">
+    <div class="header" id="boxFixed" :class="{'is_fixed' : isFixed}">
       <div class="header-left">
         <h3>
           <span class="re">相 约 自 贸 港 <b class="ab-middle">·</b> <span class="m-l15">共 享 新 机 遇</span></span>
@@ -80,7 +80,7 @@
         </div>
       </div>
     </div>
-    <div style="position: absolute;z-index: 9;top: 50vh">
+    <div style="position: absolute;z-index: 9;top: 120vh">
       <el-form :inline="true" ref="formSearch" :model="formSearch">
         <el-form-item label="抓拍时间">
           <el-date-picker
@@ -105,6 +105,7 @@ import $ from 'jquery'
 export default {
   data() {
     return {
+      isFixed: false,
       time: '00:00:00',
       date: '0000/00/00',
       setIn: null,
@@ -163,6 +164,11 @@ export default {
     }
   },
   mounted() {
+    window.addEventListener('scroll', this.initHeight);
+    this.$nextTick(() => {
+      this.offsetTop = document.querySelector('#boxFixed').offsetTop;
+      console.log(this.offsetTop,'----------this.offsetTop')
+    })
     $(".change-venue").on("click", "span", function () {
       _this.index = $(this).index();
       $(this).addClass("on").siblings().removeClass("on");
@@ -178,7 +184,16 @@ export default {
   beforeDestroy() {
     clearInterval(this.setIn)
   },
+  destroyed() {
+    window.removeEventListener('scroll', this.initHeight)
+  },
   methods: {
+    initHeight() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      console.log(this.offsetTop,'+++++++++this.offsetTop;')
+      console.log(scrollTop,'----------scrollTop')
+      this.isFixed = scrollTop > this.offsetTop;
+    },
     basicsUp() {
       const dsp = $('#basicsUp').css('display')
       if (dsp === 'block') {
@@ -217,6 +232,12 @@ export default {
   z-index: 6;
   display: flex;
   justify-content: space-between;
+}
+
+.is_fixed {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
 }
 
 .header .header-left {
@@ -259,13 +280,13 @@ export default {
 }
 
 .header .header-right {
-  width: 40%;
+  width: 46%;
   height: 100%;
-  padding-left: 2vw;
+  padding-left: 1.5vw;
 }
 
 .header .header-right .menu {
-  padding-left: 1.5vw;
+  padding-left: 1vw;
   line-height: 3vh;
   padding-top: .1vh;
   float: left;
