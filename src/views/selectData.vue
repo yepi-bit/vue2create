@@ -47,53 +47,58 @@ export default {
   name: "selectData",
   data() {
     return {
-      total:7,
-      page:1,
-      size:5,
-      currentPage:1,
-      allCheck:false,
-      multipleSelection:[],
+      total: 7,
+      page: 1,
+      size: 5,
+      currentPage: 1,
+      allCheck: false,
+      multipleSelection: [],
       tableData: [{
+        id: '1',
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }, {
+        id: '2',
         date: '2016-05-02',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }, {
+        id: '3',
         date: '2016-05-04',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }, {
+        id: '4',
         date: '2016-05-01',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }, {
+        id: '5',
         date: '2016-05-08',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }, {
+        id: '6',
         date: '2016-05-06',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }, {
+        id: '7',
         date: '2016-05-07',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }],
-      tableAllData: [],  //后台返回的所有数据
     }
   },
   watch: {
     // 分页全选-监听数据变化
     tableData: {
-      handler(value) {
+      handler(v) {
         if (this.allCheck) {
           this.tableData.forEach(row => {
             if (row) {
               this.$refs.multiTable.toggleRowSelection(row, true)
-              console.log('watch')
             }
           });
         }
@@ -111,10 +116,10 @@ export default {
       this.page = val;
     },
     getRowKeys(row) {
-      return row.data
+      return row.id
     },
     //全选事件
-    cli(rows) {
+    cli() {
       let _this = this;
       if (!_this.allCheck) {
         // 全选选中时当前页所有数据选中,使用后台所有数据进行遍历.
@@ -131,9 +136,19 @@ export default {
     },
     //列表勾选发生变化触发事件
     handleSelectionChange(val) {
-      this.multipleSelection = val
-      console.log(this.multipleSelection,'------------------->')
+      this.multipleSelection = this.reduceSame(val)  //勾选放在multipleSelection数组中,防止切换页码时,数据重复.
+      if (this.multipleSelection.length === this.total) {
+        this.allCheck = true;
+      }
     },
+    // 数组对象去重
+    reduceSame(arr) {
+      let obj = {};
+      return arr.reduce(function (prev, item) {
+        obj[item.id] ? "" : (obj[item.id] = 1 && prev.push(item))
+        return prev
+      }, []);
+    }
   }
 
 }
